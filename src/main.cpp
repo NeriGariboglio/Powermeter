@@ -21,14 +21,14 @@
 #define WIFI_PASSWORD "00444074551"
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyAqv47PT2b2AWK77PnpO5C3CCmQ7gSKmTk"
+#define API_KEY "AIzaSyApTTyO6HAivzvcYs0ILDye2uQRZbQJZGM"
 
 // Insert Authorized Email and Corresponding Password
 #define USER_EMAIL "nerigaribo@gmail.com"
 #define USER_PASSWORD "powermeter"
 
 // Insert RTDB URLefine the RTDB URL
-#define DATABASE_URL "https://esp32-powermeter-default-rtdb.firebaseio.com/"
+#define DATABASE_URL "https://powermeteresp32-default-rtdb.firebaseio.com/"
 #define emonTxV3    1
 // Define Firebase objects
 FirebaseData fbdo;
