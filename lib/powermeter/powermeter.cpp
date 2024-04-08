@@ -20,7 +20,7 @@ void powermeter::getMeter(float *current, float *voltage, float *power, float *p
     float _irms = sensors.Irms;
     float _vrms = sensors.Vrms;
     float _power = sensors.realPower * 0.001;
-    if (_irms <= 0.2) {
+    /*if (_irms <= 0.2) {
         _irms = 0;
         _power = 0;
     }
@@ -28,7 +28,7 @@ void powermeter::getMeter(float *current, float *voltage, float *power, float *p
         _irms = 0;
         _vrms = 0;
         _power = 0;
-    }
+    }*/
     float _powerTempKwh = (_power / 3600);
     _powerPerHour += _powerTempKwh;
     *current = _irms;
