@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#define WIFI_SSID "Fibertel WiFi764 2.4GHz" // Insert your network credentials Fibertel WiFi764 2.4GHz
-#define WIFI_PASSWORD "00444074551"//00444074551
+#include <WiFiManager.h>
 
-// Initialize WiFi
-void initWiFi() {
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting to WiFi ..");
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print('.');
-    delay(1000);
+void initWiFi(){
+  WiFi.mode(WIFI_STA);
+  WiFiManager WiFiManager;
+  WiFiManager.resetSettings();
+  bool res;
+  res=WiFiManager.autoConnect("PowermeterESP32","12345678");
+  if (!res){
+    Serial.println("Failed to connect");
   }
-  Serial.println(WiFi.localIP());
-  Serial.println();
+  else{
+    Serial.println("connected");
+  }
 }
