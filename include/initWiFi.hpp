@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#define WIFI_SSID "Uader" // Insert your network credentials Fibertel WiFi764 2.4GHz
-#define WIFI_PASSWORD "12345678"//00444074551
+#define WIFI_SSID "Fibertel WiFi764 2.4GHz" // Insert your network credentials Fibertel WiFi764 2.4GHz
+#define WIFI_PASSWORD "00444074551"//00444074551
 
 // Initialize WiFi
 void initWiFi() {

@@ -3,11 +3,11 @@
 #include <Firebase_ESP_Client.h>
 #include "powermeter.h"
 #include "time.h"
-#include "updateRTC.h"
-#include "initWiFi.h"
-#include "confFirebase.h"       
+#include "updateRTC.hpp"
+#include "initWiFi.hpp"
+#include "confFirebase.hpp"       
 
-powermeter fase(A6,7.58,A7,185);
+Powermeter fase(A6,7.58,A7,185,2);
 FirebaseJson json;
 
 // Timer variables (send new readings every three minutes)
@@ -25,7 +25,11 @@ void setup(){
 }
 
 void loop(){
-  fase.getMeter(&current, &voltage, &power, &powerPerHour);
+  fase.getMeter();
+  current=fase.getCurrent();
+  voltage=fase.getVoltage();
+  power=fase.getPower();
+  powerPerHour=fase.getPowerPerHour();
   // Send new readings to database
   if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
