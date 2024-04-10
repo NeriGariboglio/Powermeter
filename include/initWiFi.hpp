@@ -4,7 +4,7 @@
 void initWiFi(){
   WiFi.mode(WIFI_STA);
   WiFiManager WiFiManager;
-  WiFiManager.resetSettings();
+  //WiFiManager.resetSettings();
   bool res;
   res=WiFiManager.autoConnect("PowermeterESP32","12345678");
   if (!res){
