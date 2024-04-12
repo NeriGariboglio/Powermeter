@@ -30,8 +30,8 @@ void Powermeter::getMeter(){
     sensors.calcVI(20, 2000);
     _irms = sensors.Irms;
     _vrms = sensors.Vrms;
-    _power = sensors.realPower *_unidad;
-    if (_irms <= 0.2) {
+    _power = sensors.realPower*0.001;
+    /*if (_irms <= 0.2) {
         _irms = 0;
         _power = 0;
     }
@@ -39,7 +39,7 @@ void Powermeter::getMeter(){
         _irms = 0;
         _vrms = 0;
         _power = 0;
-    }
+    }*/
     _powerTempKwh = (_power / 3600);
     _powerPerHour += _powerTempKwh;
 }
