@@ -20,12 +20,15 @@ unsigned long currentMillis;
 unsigned long elapsedTime;
 float current,voltage,power,powerFactor,energyConsumedHour,energyConsumedDay,energyConsumedMonth;
 float powerMonth,powerDay,powerHour=0;
-int timestamp,currentHour,currentDay;
+int timestamp,currentHour,currentDay,currentMonth;
 
 void setup(){  
   Serial.begin(9600);
   initWiFi();
   configTime(0, 0, ntpServer);
+  currentDay = rtc.getDay();
+  currentMonth = rtc.getMonth();
+  currentHour = rtc.getHour(true);
   sendFase.configuration();
 }
 
@@ -57,15 +60,16 @@ void loop(){
   if (currentHour != rtc.getHour(true)){ // Si ha pasado una hora
     sendFase.sendNode("/powerHour", energyConsumedHour, timestamp);
     energyConsumedHour = 0.0; // Reiniciar el contador de energía para la próxima hora
+    currentHour = rtc.getHour(true);
   }
-  if (currentHour == 0){ // Si es medianoche
+  if (currentDay !=rtc.getDay()){ // Si ha pasado un dia
     sendFase.sendNode("/powerDay", energyConsumedDay, timestamp);
     energyConsumedDay = 0.0; // Reiniciar el contador de energía para el próximo día
+    currentDay = rtc.getDay();
   }
-  if (currentDay == 1 && currentHour == 0){ // Si es el primer día del mes y es medianoche
+  if (currentMonth !=rtc.getMonth()){ // Si el mes cambio
     sendFase.sendNode("/powerMonth", energyConsumedMonth, timestamp);
     energyConsumedMonth = 0.0; // Reiniciar el contador de energía para el próximo mes
+    currentMonth = rtc.getMonth();
   }
-  currentHour = rtc.getHour(true);
-  currentDay = rtc.getDay();
 }
