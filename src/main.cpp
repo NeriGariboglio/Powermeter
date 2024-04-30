@@ -56,6 +56,9 @@ void loop(){
     sendFase.sendNode("/voltage",voltage,timestamp);
     sendFase.sendNode("/power",power*1000,timestamp);
     sendFase.sendNode("/powerFactor",powerFactor,timestamp);
+    sendFase.sendNode("/powerHourCurrent",energyConsumedHour,timestamp);
+    sendFase.sendNode("/powerDayCurrent",energyConsumedDay,timestamp);
+    sendFase.sendNode("/powerMonthCurrent",energyConsumedMonth,timestamp);
   }
   if (currentHour != rtc.getHour(true)){ // Si ha pasado una hora
     sendFase.sendNode("/powerHour", energyConsumedHour, timestamp);
